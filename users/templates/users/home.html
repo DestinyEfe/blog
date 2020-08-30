@@ -1,0 +1,17 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+<h1>Welcome to Home page</h1>
+
+<h3>Meet with the geniuses</h3>
+{% for posts in post %}
+   <div class="post-container">
+   	<img class="rounded-circle" src="{{ posts.profile.image.url }}" style="width:100px;height:100px">
+    <h2> {{ posts.username }} </h2>
+    <h4> {{ posts.email }} </h4>
+       <form action="posts/{{ posts.username }}">
+           <button type="submit" class="btn btn-outline-success">Homepage</button>
+       </form>
+   </div>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<div class="container">
+    <ul>
+        <li style="display: inline-block" class="mr-1"><a href="{% url 'index' %}">Home</a></li>|
+        <li style="display: inline-block" class="mr-1"><a href="{% url 'about_us' %}">About Us</a></li>|
+        {% if user.is_authenticated %}
+            <li style="display: inline-block" class="mr-1"><a href="{% url 'profile' %}">Profile</a></li>|
+            <li style="display: inline-block" class="mr-4"><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li style="display: inline-block" class="mr-1"><a href="{% url 'login' %}">Login</a></li>|
+            <li style="display: inline-block" class="mr-4"><a href="{% url 'register' %}">Sign Up</a></li>
+        {% endif %}
+    </ul>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="mt-2 alert alert-{{ message.tags }}">
+                <b>{{ message }}</b>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% block content %} {% endblock content %}
+</div>
+{% block scripts %}
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% endblock %}
+</body>
+</html>
