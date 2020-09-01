@@ -1,18 +1,16 @@
 {% extends "users/base.html" %}
 
 {% block content %}
-<h1>Welcome to Home page</h1>
-
-<h3>Meet with the geniuses</h3>
+<h3>Latest Post</h3>
 {% for posts in post %}
-   <div class="card bg-light mb-3" style="max-width:28.2rem;">
+ <div class="card bg-light mb-3" style="max-width:28.2rem;">
        <div class="card-header">
            <img src="{{ posts.user.profile.image.url }}" alt="" style="width:50px;height:50px;" class="rounded-circle">
-           <b style="color:blue" class="mr-3"><a href="#" style="text-decoration:none">{{ posts.user }}</a></b>
+           <b style="color:blue" class="mr-3">{{ posts.user }}</b>
            <small>{{ posts.date_published|date:"F d, Y" }}</small>
        </div>
        <div class="card-body">
-           <h3 class="card-title"><a href="{% url 'post_detail' posts.id %}">{{ posts.title }}</a></h3>
+           <h3 class="card-title">{{ posts.title }}</h3>
            <p class="card-text">{{ posts.blog_post }}</p>
        </div>
    </div>

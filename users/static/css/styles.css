@@ -1,6 +1,33 @@
 body{
 background-color:coral;
 }
+/*styling for nav bar*/
+.navbar-brand{
+    font-weight: bold;
+    margin:0 30px;
+    font-size: 1.5em;
+}
+.nav-item{
+    margin: 0 12px;
+    font-weight: 700;
+}
+.nav-link:focus{
+    border:0px solid black !important;
+}
+.nav-link{
+    text-transform: uppercase;
+}
+.dropdown-menu{
+    background-color:rgba(0,0,0,0.3);
+}
+.dropdown-item{
+    color: whitesmoke;
+}
+.dropdown-item:hover{
+    color: red;
+    background-color:rgba(0,0,0,0.0);
+}
+/* endstyling */
 .container{
 display:block;
 padding-left:10%;

@@ -1,6 +1,6 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<body lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,19 +8,58 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
-<body>
-<div class="container">
-    <ul>
-        <li style="display: inline-block" class="mr-1"><a href="{% url 'index' %}">Home</a></li>|
-        <li style="display: inline-block" class="mr-1"><a href="{% url 'about_us' %}">About Us</a></li>|
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <div class="container">
+  <a class="navbar-brand name" href="#" style="font-size:2em;color:blue;">Tech Geeks</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+      </li>
         {% if user.is_authenticated %}
-            <li style="display: inline-block" class="mr-1"><a href="{% url 'profile' %}">Profile</a></li>|
-            <li style="display: inline-block" class="mr-4"><a href="{% url 'logout' %}">Logout</a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'post_create' %}">Create Post</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
         {% else %}
-            <li style="display: inline-block" class="mr-1"><a href="{% url 'login' %}">Login</a></li>|
-            <li style="display: inline-block" class="mr-4"><a href="{% url 'register' %}">Sign Up</a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+        </li>
         {% endif %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Others
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'latest_posts' %}">Latest Posts</a><div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Recent Posts</a><div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Calendar</a><div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Most Rated</a>
+        </div>
+      </li>
     </ul>
+  </div>
+ </div>
+</nav>
+</header>
+
+<div class="container">
     {% if messages %}
         {% for message in messages %}
             <div class="mt-2 alert alert-{{ message.tags }}">
@@ -31,6 +70,44 @@
     {% endif %}
     {% block content %} {% endblock content %}
 </div>
+<footer class="bg-dark mt-3" style="color:white">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-one">
+                        <h3>Divinector</h3>
+                        <p>Thank you for visiting my website.I will be very glad if you can hire me for a a web developer or as a Junior web developer in Company.I will be waiting for you response.Thank you once again.</p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-two">
+                        <h2>Divinector</h2>
+                        <ul>
+                            <li><a href=""></a>Event</li>
+                            <li><a href=""></a>Support</li>
+                            <li><a href=""></a>Hosting</li>
+                            <li><a href=""></a>Career</li>
+                            <li><a href=""></a>Blog</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-three">
+                        <h2>Follow Us</h2>
+                        <p>Please Follow us on our Social Media profile in order to keep updated.You can contact us with the detials we provide.Do well to patonize us.</p>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-four">
+                        <h2>Our Newletter</h2>
+                        <p>I want to start creating an open source css project that can ease the beautifying of web site to web developers.</p>
+                        <form action="">
+                            <input type="email">
+                            <input type="submit" value="subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% block scripts %}
     <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
