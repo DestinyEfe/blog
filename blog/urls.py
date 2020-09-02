@@ -23,11 +23,10 @@ from posts import views as posts_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
-    path('posts/', include('posts.urls')),
+    path('', include('posts.urls')),
     path('profile/', user_views.profile, name='profile'),
     path('login/', views.LoginView.as_view(template_name='formview/login.html'), name='login'),
     path('logout/', views.LogoutView.as_view(template_name='formview/logout.html'), name='logout'),
-    path('',include('users.urls')),
 ]
 
 if settings.DEBUG:
